@@ -67,8 +67,8 @@ function showWeatherData(data){
     let {humidity,temp, wind_speed} = data.current;
     //console.log(humidity,temp,wind_speed)    
     currentWeatherItemsEl.innerHTML=
-    `<div>
-    <div class="temp">
+    `<div >
+    <div class="temp" style="font-size:20px;">
       <strong id="tempOutdoor"> 14°C</strong>
       <strong>°C/</strong>
       <strong>${temp}°C</strong>
@@ -76,7 +76,7 @@ function showWeatherData(data){
     <p>Indoor/Outdoor Temp</p>
   </div>
   <div>
-  <div class="humit">
+  <div class="humit" style="font-size:20px;" >
       <strong id="humitOutdoor"> 48.2%/ </strong>
       <strong>%/</strong>
       <strong>  ${humidity} %</strong>
@@ -84,7 +84,7 @@ function showWeatherData(data){
     <p>Indoor/Outdoor Humidity</p>
   </div>
   <div>
-    <strong>1.5</strong>
+    <strong style="font-size:20px;">${wind_speed} km/h</strong>
     <p>Wind speed</p>
   </div>
 </div>`
