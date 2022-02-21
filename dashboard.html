@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./dashboard.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+  <div class="dashboard">
+    <header>
+      <div class="app_infor container">
+        <a href="#" class="logo">ATS</a>
+
+        <ul class="user-menu">
+          <li><a href="#"><i class='bx bx-bell'></i></a></li>
+          <li><a href="#"><i class='bx bx-user-circle account'></i></a></li>
+          <div id="sign_out">Sign Out</div>
+        </ul>
+      </div>
+      <div class="userName">Hello Wyra</div>
+      <div class="date_and_clock">
+        <div class="time" id="time">
+          12:30 <span id="am-pm">PM</span>
+        </div>
+        <div class="f fe" id="weather_forecast">
+          <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="weather_icon"
+            id="weather_icon">
+          <!-- <div class="icon icon-w"></div> -->
+          <div class="heading">
+            <h5 class="date" id="date">Monday, 1 Feb 2019</h5>
+            <h2 class="title" id="title">Cloudy</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="weather f " id="weather_status">
+        <div>
+          <div class="temp">
+            <strong id="tempIndoor"> 14°C/ </strong>
+            <strong>13°C</strong>
+          </div>
+          <p>Indoor/Outdoor Temp</p>
+        </div>
+        <div>
+          <strong>48.2%</strong>
+          <p>Indoor/Outdoor Humidity</p>
+        </div>
+        <div>
+          <strong>1.5</strong>
+          <p>Wind speed</p>
+        </div>
+      </div>
+
+    </header>
+    <section>
+      <!-- Category -->
+      
+      <!-- <div class="homeName">House1'Wyra</div> -->
+      <div class="homeName">
+        <a href="./home.html">Houses</a>
+        <span><i class='bx bxs-chevrons-right'></i></span>
+        <a href="./dashboard.html">House-HaNoi</a>
+    </div>
+      <div class="category">
+        <ul>
+          <!-- <li ><a href="#!" class="active room">Living Room</a></li>
+              <li ><a href="#!"class="room">Dinning</a></li>
+              <li ><a href="#!"class="room">Weather</a></li>
+              <li ><a href="#!"class="room" >Kitchen</a></li> -->
+        </ul>
+        <button id="add_room">Add room <i class='bx bx-plus-circle'></i></button>
+      </div>
+      <!-- Appliances -->
+      <div class="appliances" id="appliances">
+
+
+
+        <div class="appliance">
+          <input type="checkbox" name="a" id="a">
+          <label for="a">
+            <i class="l"></i>
+            <strong>Lamp<i class='bx bx-trash del_device'></i></strong>
+
+            <span data-o="opened" data-c="closed"></span>
+
+            <small></small>
+          </label>
+        </div>
+
+
+        <div class="appliance">
+          <input type="checkbox" name="a" id="b">
+          <label for="b">
+            <i class="r"></i>
+            <strong>Router<i class='bx bx-trash del_device'></i></strong>
+            <span data-o="opened" data-c="closed"></span>
+            <small></small>
+          </label>
+        </div>
+
+        <div class="appliance">
+          <input type="checkbox" name="a" id="c">
+          <label for="c">
+            <i class="a"></i>
+            <strong>Air<i class='bx bx-trash del_device'></i></strong>
+            <span data-o="opened" data-c="closed"></span>
+            <small></small>
+          </label>
+        </div>
+
+        <div class="appliance">
+          <input type="checkbox" name="a" id="d">
+          <label for="d">
+            <i class="f"></i>
+            <strong>Fridge<i class='bx bx-trash del_device'></i></strong>
+            <span data-o="opened" data-c="closed"></span>
+            <small></small>
+          </label>
+        </div>
+        <div>
+
+        </div>
+        <div class="button_room">
+
+          <button id="add_room" style="height: fit-content;">Add device <i class='bx bx-plus-circle'></i></button>
+          <button id="add_room" style="height: fit-content;">Del Room <i class='bx bx-eraser'></i></i></button>
+        </div>
+        <div class="m-player">
+          <h2>Shared Devices</h2>
+          <div class="player">
+            <div class="disc"></div>
+            <div class="artist">
+              <p>Rosetta Stoned</p>
+              <small>Tool</small>
+            </div>
+            <div class="controls">
+              <input type="checkbox" name="a" id="p">
+              <label for="p">
+                <div class="control"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal hide">
+      <div class="modal__inner">
+        <!-- <div class="modal__header">
+              <p>Welcome to Nodemy</p>
+              <i class="fas fa-times"></i>
+            </div> -->
+        <div class="modal__body">
+          <div class="modal_icon_close">
+            <h2>Notification</h2>
+            <i class='bx bxs-x-square'></i>
+          </div>
+
+          <p>Are you sure del this ?</p>
+        </div>
+        <div class="modal__footer">
+
+          <button id="button_c">Close</button>
+          <button id="button_y"> Yes</button>
+
+        </div>
+      </div>
+    </div>
+    <!-- MODAL ADD -->
+    <div class="modal_add_room modal hide" id>
+      <div class="modal__inner">
+
+        <div class="modal__body ">
+          <div class="modal_icon_close modal_icon_close2">
+            <h2>Notification</h2>
+            <i class='bx bxs-x-square'></i>
+          </div>
+
+          <p>Input name of this?</p>
+          <input type="text" id="roomAdded">
+        </div>
+        <div class="modal__footer modal__footer2">
+
+          <button id="button_c">Close</button>
+          <button id="button_y2"> Confirm</button>
+
+        </div>
+      </div>
+    </div>
+    <!-- TOAST -->
+    <div id="toasts"></div>
+  </div>
+
+  <script src="./lib/jquery-3.6.0.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore-compat.js"></script>
+
+  <script src="./dashboard.js"></script>
+  <!-- <a href="https://www.youtube.com/watch?v=URUPsrmtYfs" target="_blank" title="Watch me speed code this" style="position: fixed; bottom: 10px; right: 10px"><img src="http://co0kie.github.io/codepen/youtube.png" alt=""></a> -->
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+.section{
+    width: 1228px;
+    height: 472px;
+    background-color: white;
+    
+}
+#home{
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+#houseOfUser{
+    display: flex;
+    
+    margin-bottom: 30px;
+    
+}
+#houseOfUser >div{
+    margin-left: 30px;
+    
+}
