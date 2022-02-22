@@ -336,7 +336,7 @@ function addroom (){
       
       firebase_db.collection("roomNhaA").doc(idRoom.toString()).set({
         roomName:document.getElementById('roomAdded').value,
-        id:idRoom
+        id:idRoom.toString()
       })
       toggleModalAddRoom();
       // window.location.reload()
