@@ -61,43 +61,43 @@ function getWeatherData () {
 }
 
 
-function showWeatherData(data){
+// function showWeatherData(data){
   
-  //console/log(tempIndoor)
-    let {humidity,temp, wind_speed} = data.current;
-    //console.log(humidity,temp,wind_speed)    
-    currentWeatherItemsEl.innerHTML=
-    `<div >
-    <div class="temp" style="font-size:20px;">
-      <strong id="tempOutdoor"> 14°C</strong>
-      <strong>°C/</strong>
-      <strong>${temp}°C</strong>
-    </div>
-    <p>Indoor/Outdoor Temp</p>
-  </div>
-  <div>
-  <div class="humit" style="font-size:20px;" >
-      <strong id="humitOutdoor"> 48.2%/ </strong>
-      <strong>%/</strong>
-      <strong>  ${humidity} %</strong>
-    </div>
-    <p>Indoor/Outdoor Humidity</p>
-  </div>
-  <div>
-    <strong style="font-size:20px;">${wind_speed} km/h</strong>
-    <p>Wind speed</p>
-  </div>
-</div>`
-  // weatherForecast.innerHTML=
-  // `<img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" class="weather_icon">
-  //             <!-- <div class="icon icon-w"></div> -->
-  //             <div class="heading">
-  //               <h5 class="date" id="date">Monday, 1 Feb 2019</h5>
-  //               <h2 class="title" id="title">${data.current.weather[0].main}</h2>`
-  document.getElementById('weather_icon').src=`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
-  document.getElementById('title').innerHTML=`${data.current.weather[0].main}`;
+//   //console/log(tempIndoor)
+//     let {humidity,temp, wind_speed} = data.current;
+//     //console.log(humidity,temp,wind_speed)    
+//     currentWeatherItemsEl.innerHTML=
+//     `<div >
+//     <div class="temp" style="font-size:20px;">
+//       <strong id="tempOutdoor"> 14°C</strong>
+//       <strong>°C/</strong>
+//       <strong>${temp}°C</strong>
+//     </div>
+//     <p>Indoor/Outdoor Temp</p>
+//   </div>
+//   <div>
+//   <div class="humit" style="font-size:20px;" >
+//       <strong id="humitOutdoor"> 48.2%/ </strong>
+//       <strong>%/</strong>
+//       <strong>  ${humidity} %</strong>
+//     </div>
+//     <p>Indoor/Outdoor Humidity</p>
+//   </div>
+//   <div>
+//     <strong style="font-size:20px;">${wind_speed} km/h</strong>
+//     <p>Wind speed</p>
+//   </div>
+// </div>`
+//   // weatherForecast.innerHTML=
+//   // `<img src="http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png" alt="weather icon" class="weather_icon">
+//   //             <!-- <div class="icon icon-w"></div> -->
+//   //             <div class="heading">
+//   //               <h5 class="date" id="date">Monday, 1 Feb 2019</h5>
+//   //               <h2 class="title" id="title">${data.current.weather[0].main}</h2>`
+//   document.getElementById('weather_icon').src=`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
+//   document.getElementById('title').innerHTML=`${data.current.weather[0].main}`;
 
-  }
+//   }
 
 
 
@@ -159,10 +159,11 @@ function delDevice(){
         firebase_db.collection("NhaA").doc(devices[index].getAttribute('name')).delete().then(() => {
           console.log("Document successfully deleted!");
            toggleModal();
+           
       }).catch((error) => {
           console.error("Error removing document: ", error);
       });
-       
+      //  window.location.reload()
       }
     }   
   }
@@ -338,6 +339,7 @@ function addroom (){
         id:idRoom
       })
       toggleModalAddRoom();
+      // window.location.reload()
     })
   })
 }
@@ -374,12 +376,13 @@ function delRoom(){
               firebase_db.collection("roomNhaA").doc(doc.data().id.toString()).delete().then(() => {
                 console.log("Document successfully deleted!");
                 toggleModal();
+                
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
           });
           })          
-        
+        // window.location.reload();
       }
   }
 
@@ -418,20 +421,36 @@ document.getElementById("sign_out").addEventListener('click',()=> window.locatio
 // },1000)
 
 
+const iconCloseModal3 = document.querySelector(".modal_icon_close3 i");
+const buttonCloseModal3 = document.querySelector(".modal__footer3 button");
+const buttonYesModal3 = document.getElementById('button_y3');
+const modalAddDevice = document.querySelector('.modal_add_device');
 //AddDevice
 function addDevice(){
   document.getElementById('add_device').onclick=()=>{
-    modalAddRoom.classList.toggle('hide');
-    buttonYesModal2.addEventListener('click',(e)=>{
+    modalAddDevice.classList.toggle('hide');
+    buttonYesModal3.addEventListener('click',(e)=>{
         //console.log(devices[index].getAttribute('name'))
         createToast(e.target.getAttribute('class'));
         console.log(document.getElementById('add_device').getAttribute('name'))
         let idDevice =Math.random(100000000)
-        firebase_db.collection("NhaA").doc(idDevice.toString()).set({value:0,type:document.getElementById('roomAdded').value,id:idDevice,room:document.getElementById('add_device').getAttribute('name'),humidity:0,temp:0})
+        firebase_db.collection("NhaA").doc(idDevice.toString()).set({value:0,type:document.getElementById('deviceAdded').value,id:idDevice.toString(),room:document.getElementById('add_device').getAttribute('name'),humidity:0,temp:0})
                    createToast(document.querySelector('.category ul'));
-                   toggleModalAddRoom();
+                   toggleModalDevice();
+                  
         
       })
+      //  window.location.reload()
   }
 }
+function toggleModalDevice() {
+  modalAddDevice.classList.toggle("hide");
+}
+iconCloseModal3.addEventListener("click", toggleModalDevice);
+buttonCloseModal3.addEventListener("click", toggleModalDevice);
+
+modal.addEventListener("click", (e) => {
+  if (e.target == e.currentTarget) toggleModalDevice();
+});
+
 setInterval(addDevice,1000)

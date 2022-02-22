@@ -40,22 +40,28 @@
       </div>
 
       <div class="weather f " id="weather_status">
-        <div>
-          <div class="temp">
-            <strong id="tempIndoor"> 14°C/ </strong>
-            <strong>13°C</strong>
+        <div >
+          <div class="temp" style="font-size:20px;">
+            <strong id="tempOutdoor"> 14°C</strong>
+            <strong>°C/</strong>
+            <strong>10.2°C</strong>
           </div>
           <p>Indoor/Outdoor Temp</p>
         </div>
         <div>
-          <strong>48.2%</strong>
+        <div class="humit" style="font-size:20px;" >
+            <strong id="humitOutdoor"> 48.2%/ </strong>
+            <strong>%/</strong>
+            <strong>  57.5 %</strong>
+          </div>
           <p>Indoor/Outdoor Humidity</p>
         </div>
         <div>
-          <strong>1.5</strong>
+          <strong style="font-size:20px;">3.2 km/h</strong>
           <p>Wind speed</p>
         </div>
       </div>
+      
 
     </header>
     <section>
@@ -184,13 +190,35 @@
             <i class='bx bxs-x-square'></i>
           </div>
 
-          <p>Input name of this?</p>
+          <p>Input name of Room?</p>
           <input type="text" id="roomAdded">
         </div>
         <div class="modal__footer modal__footer2">
 
           <button id="button_c">Close</button>
           <button id="button_y2"> Confirm</button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL ADD Device -->
+    <div class="modal hide modal_add_device" id>
+      <div class="modal__inner">
+
+        <div class="modal__body ">
+          <div class="modal_icon_close modal_icon_close2 modal_icon_close3">
+            <h2>Notification</h2>
+            <i class='bx bxs-x-square'></i>
+          </div>
+
+          <p>Input name of Device?</p>
+          <input type="text" id="deviceAdded">
+        </div>
+        <div class="modal__footer modal__footer2 modal__footer3">
+
+          <button id="button_c">Close</button>
+          <button id="button_y3"> Confirm</button>
 
         </div>
       </div>
