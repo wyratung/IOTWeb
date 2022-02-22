@@ -331,7 +331,7 @@ function addroom (){
     buttonYesModal2.addEventListener('click',(e)=>{
       createToast(document.querySelector('.category ul'));
       //console.log(document.querySelectorAll('.category ul li')  )
-      document.querySelector('.category ul').innerHTML +=`<li ><a href="#!"class="room" >${document.getElementById('roomAdded').value}</a></li>`
+      //document.querySelector('.category ul').innerHTML +=`<li ><a href="#!"class="room" >${document.getElementById('roomAdded').value}</a></li>`
       let idRoom=makeid()
       
       firebase_db.collection("roomNhaA").doc(idRoom).set({
