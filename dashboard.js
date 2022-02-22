@@ -332,11 +332,11 @@ function addroom (){
       createToast(document.querySelector('.category ul'));
       //console.log(document.querySelectorAll('.category ul li')  )
       document.querySelector('.category ul').innerHTML +=`<li ><a href="#!"class="room" >${document.getElementById('roomAdded').value}</a></li>`
-      let idRoom=Math.random(100000000)
+      let idRoom=makeid()
       
-      firebase_db.collection("roomNhaA").doc(idRoom.toString()).set({
+      firebase_db.collection("roomNhaA").doc(idRoom).set({
         roomName:document.getElementById('roomAdded').value,
-        id:idRoom.toString()
+        id:idRoom
       })
       toggleModalAddRoom();
       // window.location.reload()
@@ -433,8 +433,8 @@ function addDevice(){
         //console.log(devices[index].getAttribute('name'))
         createToast(e.target.getAttribute('class'));
         console.log(document.getElementById('add_device').getAttribute('name'))
-        let idDevice =Math.random(100000000)
-        firebase_db.collection("NhaA").doc(idDevice.toString()).set({value:0,type:document.getElementById('deviceAdded').value,id:idDevice.toString(),room:document.getElementById('add_device').getAttribute('name'),humidity:0,temp:0})
+        let idDevice =makeid()
+        firebase_db.collection("NhaA").doc(idDevice).set({value:0,type:document.getElementById('deviceAdded').value,id:idDevice,room:document.getElementById('add_device').getAttribute('name'),humidity:0,temp:0})
                    createToast(document.querySelector('.category ul'));
                    toggleModalDevice();
                   
@@ -454,3 +454,15 @@ modal.addEventListener("click", (e) => {
 });
 
 setInterval(addDevice,1000)
+
+//random id
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 19; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
