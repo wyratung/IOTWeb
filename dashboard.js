@@ -134,7 +134,7 @@ function handleRoom(){
   for (let index = 0; index < rooms.length; index++) {    
     
     rooms[index].addEventListener('click',function(){
-      this.addClass("active");
+      this.removeClass("active");
     })
   }
  }
@@ -226,8 +226,19 @@ setTimeout(()=>{
   const roomActives= document.getElementsByClassName('room');  
     for (let index = 0; index < roomActives.length; index++) {
       roomActives[index].addEventListener('click',function(){
+        // for (let index1 = 0; index1 < roomActives.length; index1++) {
+        //   console.log(2);
+        //   ()=>{roomActives[index1].removeClass("active") 
+
+        //     console.log(1) }
+        // }
+        handleRoom()
+        // for (let index2 = 0; index2 < roomActives.length; index2++) {
+          
+        //   roomActives[index2].classList.toggle('active');
+        // }
         roomActives[index].classList.toggle('active');
-        console.log(this)
+        
         
         firebase_db.collection("NhaA").where("room","==",roomActives[index].innerHTML)
         .onSnapshot((querySnapshot) => {
@@ -276,7 +287,7 @@ setTimeout(()=>{
           })
           appliancesInRoom.innerHTML+=`<div class="button_room" >
 
-          <button id="add_room" style="height: fit-content;" name="${roomActives[index].innerHTML}">Add device <i class='bx bx-plus-circle'></i></button>
+          <button id="add_device" style="height: fit-content;" name="${roomActives[index].innerHTML}">Add device <i class='bx bx-plus-circle'></i></button>
           <button id="del_room" style="height: fit-content;" name="${roomActives[index].innerHTML}">Del Room <i class='bx bx-eraser'></i></i></button>
         </div>
          <div class="m-player">
@@ -322,7 +333,7 @@ function addroom (){
       document.querySelector('.category ul').innerHTML +=`<li ><a href="#!"class="room" >${document.getElementById('roomAdded').value}</a></li>`
       let idRoom=Math.random(100000000)
       
-      firebase_db.collection("roomNhaA").doc(idRoom).set({
+      firebase_db.collection("roomNhaA").doc(idRoom.toString()).set({
         roomName:document.getElementById('roomAdded').value,
         id:idRoom
       })
@@ -337,15 +348,7 @@ function toggleModalAddRoom() {
 }
 iconCloseModal2.addEventListener("click", toggleModalAddRoom);
 buttonCloseModal2.addEventListener("click", toggleModalAddRoom);
-buttonYesModal2.addEventListener('click',(e)=>{
-  createToast(document.querySelector('.category ul'));
-  //console.log(document.querySelectorAll('.category ul li')  )
-  document.querySelector('.category ul').innerHTML +=`<li ><a href="#!"class="room" >${document.getElementById('roomAdded').value}</a></li>`
-  toggleModalAddRoom();
-  firebase_db.collection("roomNhaA").doc().set({
-    roomName:document.getElementById('roomAdded').value
-  })
-})
+
 modal.addEventListener("click", (e) => {
   if (e.target == e.currentTarget) toggleModalAddRoom();
 });
@@ -368,15 +371,15 @@ function delRoom(){
             querySnapshot.forEach((doc) => {
               // doc.data() is never undefined for query doc snapshots
               console.log( doc.data().id);
-              firebase_db.collection("roomNhaA").doc(doc.data().id).delete().then(() => {
+              firebase_db.collection("roomNhaA").doc(doc.data().id.toString()).delete().then(() => {
                 console.log("Document successfully deleted!");
-                
+                toggleModal();
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
           });
           })          
-        toggleModal();
+        
       }
   }
 
@@ -415,4 +418,20 @@ document.getElementById("sign_out").addEventListener('click',()=> window.locatio
 // },1000)
 
 
-  
+//AddDevice
+function addDevice(){
+  document.getElementById('add_device').onclick=()=>{
+    modalAddRoom.classList.toggle('hide');
+    buttonYesModal2.addEventListener('click',(e)=>{
+        //console.log(devices[index].getAttribute('name'))
+        createToast(e.target.getAttribute('class'));
+        console.log(document.getElementById('add_device').getAttribute('name'))
+        let idDevice =Math.random(100000000)
+        firebase_db.collection("NhaA").doc(idDevice.toString()).set({value:0,type:document.getElementById('roomAdded').value,id:idDevice,room:document.getElementById('add_device').getAttribute('name'),humidity:0,temp:0})
+                   createToast(document.querySelector('.category ul'));
+                   toggleModalAddRoom();
+        
+      })
+  }
+}
+setInterval(addDevice,1000)
