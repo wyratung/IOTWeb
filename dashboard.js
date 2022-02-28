@@ -221,12 +221,16 @@ function createToast(status) {
 
 //Render appliances each Room
 // ADD ROOM
+
 const appliancesInRoom= document.getElementById("appliances");
 // console.log(appliancesInRoom)
 setTimeout(()=>{
   const roomActives= document.getElementsByClassName('room');  
+
     for (let index = 0; index < roomActives.length; index++) {
       roomActives[index].addEventListener('click',function(){
+        $('.room').removeClass('active')
+        $('.room:focus').removeClass("active");
         // for (let index1 = 0; index1 < roomActives.length; index1++) {
         //   console.log(2);
         //   ()=>{roomActives[index1].removeClass("active") 
