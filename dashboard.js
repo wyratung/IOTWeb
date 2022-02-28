@@ -129,17 +129,6 @@ function getWeatherData () {
 
 }, 1000);
 
-const rooms= document.getElementsByClassName('room');
-function handleRoom(){
-  for (let index = 0; index < rooms.length; index++) {    
-    
-    rooms[index].addEventListener('click',function(){
-      this.removeClass("active");
-    })
-  }
- }
-handleRoom();
-
 //JS for Modal and Del Device
 const modal = document.querySelector(".modal");
 
@@ -230,19 +219,18 @@ setTimeout(()=>{
     for (let index = 0; index < roomActives.length; index++) {
       roomActives[index].addEventListener('click',function(){
         $('.room').removeClass('active')
-        $('.room:focus').removeClass("active");
+        $('.room:focus').addClass("active");
         // for (let index1 = 0; index1 < roomActives.length; index1++) {
         //   console.log(2);
         //   ()=>{roomActives[index1].removeClass("active") 
 
         //     console.log(1) }
-        // }
-        handleRoom()
+        // }       
         // for (let index2 = 0; index2 < roomActives.length; index2++) {
           
         //   roomActives[index2].classList.toggle('active');
         // }
-        roomActives[index].classList.toggle('active');
+        //roomActives[index].classList.toggle('active');
         
         
         firebase_db.collection("NhaA").where("room","==",roomActives[index].innerHTML)
